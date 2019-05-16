@@ -71,6 +71,24 @@ body {
 
 }
 
+.cart_widget {
+	background-color: #343434;
+	border-color: #343434;
+	color: #5539C2;
+}
+
+.dropdown-item:hover {
+	background-color: #343434;
+}
+
+.bottom_border {
+	border-bottom: 4px solid #5539C2;
+}
+
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
+
 .price {
 	border: none;
 	outline: 0;

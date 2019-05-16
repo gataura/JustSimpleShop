@@ -6,14 +6,13 @@
 
 {% block content %}
    <div class="container-fluid">
-      <div class="row" style="margin-top: 6%">
+      <div class="row justify-content-center" style="margin-top: 6%">
 
         <div class="col-sm-8 blog-main">
-
           <div class="blog-post">
               <div class="row">
                   {% for product in products %}
-                      <div class="col-md-4 product-wrapper">
+                      <div class="col-md-3 product-wrapper">
                         <div class="product">
                             <a href="{{ product.get_absolute_url }}">
                                 <img src="{% if product.image %} {{ product.image.url }} {% else %} {% static 'img/default.jpg' %} {% endif %}" alt="..." >
@@ -35,22 +34,7 @@
 
         </div><!-- /.blog-main -->
 
-        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-          <div class="sidebar-module">
-            <h4>Categories</h4>
-            <ol class="list-unstyled">
-              <li {% if not category %} class="active"{% endif %}>
-                  <a href="{% url 'JustSimpleShop:product_list' %}">All</a>
-              </li>
-            {% for c in categories %}
-
-              <li {% if category.slug == c.slug %} class="active"{% endif %}>
-                  <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
-              </li>
-            {% endfor %}
-            </ol>
-          </div>
-        </div><!-- /.blog-sidebar -->
+<!-- /.blog-sidebar -->
 
       </div><!-- /.row -->
 
