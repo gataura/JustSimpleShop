@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
 from JustSimpleShop.models import Product
+from cart import models
 from .cart import Cart
-from .forms import CartAddProductForm
+from .forms import CartAddProductForm, OrderForm
 
 
 # Create your views here.
@@ -27,6 +28,30 @@ def cart_remove(request, product_id):
 
 def cart_detail(request):
     cart = Cart(request)
+    confirm_form = OrderForm()
     for item in cart:
         item['update_quantity_form'] = CartAddProductForm(initial={'quantity': item['quantity'], 'update': True})
-    return render(request, 'cart/detail.html', {'cart': cart})
+    return render(request, 'cart/detail.html', {'cart': cart, 'confirm_form': confirm_form})
+
+
+def cart_confirm(request):
+    return render(request, 'cart/confirmation.html')
+
+
+def buy(request):
+    global cd
+    form = OrderForm(request.POST)
+    order = ''
+    # for item in cart:
+    #     order += item.product.name + '; '
+    if form.is_valid():
+        cd = form.cleaned_data
+
+    order_model = models.Order.objects.create(
+        userName=cd['userName'],
+        address=cd['address'],
+    )
+
+    order_model.save()
+
+    return render(request, 'cart/confirmation.html')

@@ -1,5 +1,4 @@
-#!/home/salikh/PycharmProjects/untitled/venv/bin/python
-
+#!/Users/salikh/PycharmProjects/JustSimpleShop/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

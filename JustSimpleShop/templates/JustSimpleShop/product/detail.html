@@ -1,12 +1,14 @@
 {% extends 'JustSimpleShop/base.html' %}
+
 {% load static %}
+
 {% block title %}
     {% if category %}{{ category.name }} {% else %} Products {% endif %}
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="row" style="margin-top: 6%">
+
+       {% comment %} <div class="row" style="margin-top: 6%">
 
             <div class="col-sm-8 blog-main">
 
@@ -40,5 +42,43 @@
             </div><!-- /.blog-main -->
 
         </div><!-- /.row -->
-    </div><!-- /.container -->
+    </div><!-- /.container -->{% endcomment %}
+
+    <div class="container">
+	<div class="row">
+		<h2>{{ product.name }}</h2>
+	</div>
+
+	<div class="block">
+      <div class="row">
+        <div class="col-md-6">
+{#            <img class="img-left" src="{% if product.image %} {{ product.image.url }} {% else %} {% static 'img/default.jpg' %} {% endif %}"/>#}
+            <div class="img-zoom-container">
+                <img id="myimage" src="{% if product.image %} {{ product.image.url }} {% else %} {% static 'img/default.jpg' %} {% endif %}" class="img-left" alt="">
+                <div id="myresult" class="img-zoom-result"></div>
+            </div>
+        </div>
+      <div class="col-md-6">
+           <a href="{{ product.category.get_absolute_url }}">Категория:  {{ product.category }} </a>
+            <h3>
+                Описание:
+            </h3>
+            <p>{{ product.description }}</p>
+            <h5>
+                {{ product.price }}
+            </h5>
+            <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                {% csrf_token %}
+                {{ cart_product_form }}
+                <input type="submit" class="btn" value="Добавить" style="background-color: #5539C2; color: white">
+            </form>
+      </div>
+     </div>
+    </div>
+
+</div>
+
+       <script>
+        imageZoom("myimage", "myresult");
+    </script>
 {% endblock %}

@@ -4,7 +4,9 @@
     {% if category %}{{ category.name }} {% else %} Products {% endif %}
 {% endblock %}
 
+
 {% block content %}
+    {% include 'JustSimpleShop/sortSearch.html' %}
    <div class="container-fluid">
       <div class="row justify-content-center" style="margin-top: 6%">
 
@@ -12,7 +14,7 @@
           <div class="blog-post">
               <div class="row">
                   {% for product in products %}
-                      <div class="col-md-3 product-wrapper">
+                      <div class="col-md-4 product-wrapper">
                         <div class="product">
                             <a href="{{ product.get_absolute_url }}">
                                 <img src="{% if product.image %} {{ product.image.url }} {% else %} {% static 'img/default.jpg' %} {% endif %}" alt="..." >
@@ -22,7 +24,7 @@
                                     <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
                                 </h2>
                                 <div class="product-description">{{ product.description }}</div>
-                                <div class="price"><a href="{{ product.get_absolute_url }}">{{ product.price }}</a></div>
+                                <a href="{{ product.get_absolute_url }}"><div class="price">{{ product.price }} ₽</div></a>
                             </div>
                         </div>
                       </div>

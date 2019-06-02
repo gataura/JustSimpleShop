@@ -43,12 +43,12 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background: #232323;">
                 <ol class="list-unstyled">
                     <li {% if not category %} class="active"{% endif %}>
-                        <a href="{% url 'JustSimpleShop:product_list' %}" class="dropdown-item" style="color: #5539C2">All</a>
+                        <a href="{% url 'JustSimpleShop:product_list' %}" class="dropdown-item" style="color: #ffffff">All</a>
                     </li>
                     {% for c in categories %}
 
                     <li {% if category.slug == c.slug %} class="active"{% endif %}>
-                        <a href="{{ c.get_absolute_url }}" class="dropdown-item" style="color: #5539C2">{{ c.name }}</a>
+                        <a href="{{ c.get_absolute_url }}" class="dropdown-item" style="color: #ffffff">{{ c.name }}</a>
                     </li>
                     {% endfor %}
                 </ol>
